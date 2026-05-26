@@ -1,0 +1,88 @@
+domain: ops.vdab.be
+zuil: ldv
+environment: rel1${zuil}
+cop.appendix: .apps.cop-${zuil}.${domain}
+
+spring:
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    #    url: dynamically using test container
+    username: system
+    password: oracle
+  ldap:
+    embedded:
+      port: 0
+      ldif: classpath:ldap/generated/setup_data.ldif
+      credential:
+        username: cn=root
+        password: testtest
+      validation:
+        enabled: false
+      base-dn:
+        - O=VDAB
+        - c=be
+
+# workaround for mockmvc issue documented here: https://github.com/spring-projects/spring-security/issues/14418
+server:
+  servlet:
+    jsp:
+      registered: false
+
+
+isim:
+  ldap:
+    host: localhost
+    user: ${spring.ldap.embedded.credential.username}
+    password: ${spring.ldap.embedded.credential.password}
+    port: ${spring.ldap.embedded.port}
+    sslport: ${spring.ldap.embedded.port}
+    useTLS: false
+  user: '<dummy>'
+  password: '<dummy>'
+
+fgds:
+  ldap:
+    host:
+      write: localhost
+    useTLS: false
+    port: ${spring.ldap.embedded.port}
+    user: ${spring.ldap.embedded.credential.username}
+    password: ${spring.ldap.embedded.credential.password}
+
+service:
+  ui:
+    search-limit: 1
+  appendix: -${environment}.${domain}
+  auth4u.url: http://auth4u00-${environment}.${domain}:8080/auth4u
+  businessservice.url: http://dlbusinessservice${service.appendix}/businessservice
+  codes.url: https://codes${cop.appendix}/codes
+  jwks.url: https://fed-runtime-${zuil}.${domain}/sps/jwks
+  gebruikersbeheer-derden.extern.url: https://consulent-${environment}.${domain}
+  gebruikerservice.url: https://gebruikerservice${cop.appendix}/gebruikerservice
+  orgeenheid.url: https://organisatie-legacy${cop.appendix}/orgeenheid
+  passwordchange.url: https://passwordchange${cop.appendix}/password
+  werkgevers.extern.url: https://werkgevers-${environment}.${domain}
+  website.url: https://www-${environment}.${domain}
+  artemisamq:
+    protocol: tcp
+    host: localhost
+    port: 9876
+    port.tcp: 61616
+    master: ${service.artemisamq.protocol}://${service.artemisamq.host}:${service.artemisamq.port.tcp}
+    url: ${service.artemisamq.protocol}://${service.artemisamq.host}:${service.artemisamq.port}
+    url.tcp: ${service.artemisamq.master}
+    user: user
+    password: '<dummy>'
+
+encryptor.shared.secret: test
+invalidateSessionOnPrincipalChange: false
+oidc:
+  issuers:
+    intern:
+      enabled: true
+      propagation:
+        strategy: ignore
+    derde:
+      enabled: true
+      propagation:
+        strategy: ignore

@@ -1,0 +1,747 @@
+# Test data, TODO try to follow actual LDAP structure (user and group base DN's)
+# NOTE: non-standard LDAP entries have been commented out to enable the embedded server to run
+
+dn: O=VDAB
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: kpn
+
+dn: c=be
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: kpn
+
+# Organizational Units
+dn: ou=usr,O=VDAB
+objectclass: top
+objectclass: organizationalUnit
+ou: usr
+
+# Organizational Units
+dn: ou=intern,ou=usr,O=VDAB
+objectclass: top
+objectclass: organizationalUnit
+ou: intern
+
+# Organizational Units
+dn: ou=applications,O=VDAB
+objectclass: top
+objectclass: organizationalUnit
+ou: applications
+
+dn: ou=func_roles,ou=applications,O=VDAB
+objectclass: top
+objectclass: organizationalUnit
+ou: func_roles
+
+# Organizational Units
+dn: ou=gads,ou=applications,O=VDAB
+objectclass: top
+objectclass: organizationalUnit
+ou: gads
+
+# Organizational Units
+dn: ou=groups,ou=gads,ou=applications,O=VDAB
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: o=vdab,c=be
+o: vdab
+objectclass: top
+objectclass: organizationalunit
+
+dn: ou=vdab,o=vdab,c=be
+ou: vdab
+objectclass: top
+objectclass: organizationalunit
+
+dn: ou=itim,ou=vdab,o=vdab,c=be
+ou: itim
+objectclass: top
+objectclass: organizationalUnit
+
+dn: ou=systemUser,ou=itim,ou=vdab,o=vdab,c=be
+ou: systemUser
+objectclass: top
+objectclass: organizationalUnit
+
+dn: eruid=TEST_TRUSTCENTER,ou=systemUser,ou=itim,ou=vdab,o=vdab,c=be
+eruid: TEST_TRUSTCENTER
+erchangepswdrequired: false
+owner: erglobalid=2856391400501852469,ou=0,ou=people,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: erSystemUser
+erservice: erglobalid=00000000000000000002,ou=services,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+eraccountstatus: 0
+
+dn: erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erglobalid: 00000000000000000000
+objectclass: top
+objectclass: organizationalunit
+
+dn: ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: organizationalunit
+ou: orgChart
+
+dn: erglobalid=3039736501573425690,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erparent: erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erglobalid: 3039736501573425690
+ou: Medewerkers
+objectclass: top
+objectclass: organizationalunit
+
+dn: erglobalid=3039778591881921860,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erparent: erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erglobalid: 3039778591881921860
+objectclass: top
+objectclass: organizationalunit
+ou: Prullenbak
+
+dn: erglobalid=3039661976438383109,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erparent: erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erglobalid: 3039661976438383109
+ou: Derden
+objectclass: top
+objectclass: SecurityDomain
+objectclass: erManagedItem
+objectclass: erSecurityDomainItem
+
+dn: erglobalid=3751555145583114199,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+vdabvolgnummer: 000
+city: BRUSSEL
+vdabikp: 10006667000
+erparent: erglobalid=3039661976438383109,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: SecurityDomain
+objectclass: erManagedItem
+objectclass: erSecurityDomainItem
+postalcode: 1000
+erglobalid: 3751555145583114199
+vdabhoofdzetel: 10006667
+vdaborgid: 10006667
+ou: TESTBEDRIJF CONNIE
+street: LANGESTRAAT 66
+vdabsa: CVS
+vdabsa: OPLEIDINGMANAGER
+vdaboe: 10003240
+
+dn: erglobalid=1400427702632520801,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erparent: erglobalid=3751555145583114199,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+street: LOVESTREET 007
+vdabvolgnummer: 003
+ou: TESTBEDRIJF SONILA
+city: OOSTENDE
+vdabikp: 10006667003
+objectclass: top
+objectclass: SecurityDomain
+objectclass: erManagedItem
+objectclass: erSecurityDomainItem
+postalcode: 8400
+erglobalid: 1400427702632520801
+vdaborgid: 10666306
+vdabhoofdzetel: 10006667
+vdaboe: 10020876
+vdabsa: ESF Rapportering
+vdabsa: loopbaanbegeleiding
+vdabsa: XML Vacatures
+
+dn: ou=services,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: organizationalunit
+ou: services
+
+dn: ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: organizationalunit
+ou: roles
+
+dn: ou=people,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: organizationalunit
+ou: people
+
+dn: ou=0,ou=people,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: organizationalunit
+ou: 0
+
+dn: erglobalid=1,ou=services,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: fgdsservice
+fgdsuserdn: ou=intern,ou=usr,o=vdab
+erglobalid: 1
+erservicename: FGDS Intern
+
+dn: erglobalid=2,ou=services,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: fgdsservice
+fgdsuserdn: ou=intern,ou=usr,o=vdab
+erglobalid: 2
+erservicename: Peoplesoft Intern
+
+dn: erglobalid=1,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectclass: top
+objectclass: erRole
+vdabrolename: Toegangsbeheer
+eraccessname: DOMAIN ADMINS
+erglobalid: 1
+vdabroledescription: Beheer van de VDAB-accounts voor de medewerkers
+errolename: DOMAIN ADMINS
+vdabtag: DomainAdmin
+vdabtag: DerdeExtern
+vdabtag: DerdeIntern
+vdabapproval: False
+vdabsod: False
+
+dn: erglobalid=2504366651015063997,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-IKL-MET-ZELFBEHEER
+vdabroledescription: FR-IKL-MET-ZELFBEHEER
+description: Automatically created from FGDS
+erRoleName: FR-IKL-MET-ZELFBEHEER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504380751043216004,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-HELPDESK
+vdabroledescription: FR-HELPDESK
+description: Automatically created from FGDS
+erRoleName: FR-HELPDESK
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504392378598868087,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-INTERVENTIE
+vdabroledescription: FR-INTERVENTIE
+description: Automatically created from FGDS
+erRoleName: FR-INTERVENTIE
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504406311364778964,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: VDAB-Consulent
+vdabroledescription: VDAB-Consulent
+description: Automatically created from FGDS
+erRoleName: FR-VDAB-CONSULENT
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504418564828302910,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: LIP-inschrijver
+vdabroledescription: LIP-inschrijver
+description: Automatically created from FGDS
+erRoleName: FR-LIP-INSCHRIJVER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504430483629335249,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: LIP-zelfinschrijver
+vdabroledescription: LIP-zelfinschrijver
+description: Automatically created from FGDS
+erRoleName: FR-LIP-ZELFINSCHRIJVER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504443981275282562,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: VDAB-EXPERT
+vdabroledescription: VDAB-EXPERT
+description: Automatically created from FGDS
+erRoleName: FR-VDAB-EXPERT
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504458107237235857,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: TRAJECTTOEWIJZER
+vdabroledescription: TRAJECTTOEWIJZER
+description: Automatically created from FGDS
+erRoleName: FR-VDAB-TRAJECTTOEWIJZER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504470352372237855,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-VDAB-CORRECTOR
+vdabroledescription: FR-VDAB-CORRECTOR
+description: Automatically created from FGDS
+erRoleName: FR-VDAB-CORRECTOR
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504482774720134592,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: ATB-LWW
+vdabroledescription: ATB-LWW
+description: Automatically created from FGDS
+erRoleName: FR-ATB-LWW
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504496358020684154,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-IT-EXPERT
+vdabroledescription: FR-IT-EXPERT
+description: Automatically created from FGDS
+erRoleName: FR-IT-EXPERT
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504508801826955225,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR_DOCUMENTEXPERT_BEHEERDER
+vdabroledescription: Intranet Document Expert en Beheerder
+description: Automatically created from FGDS
+erRoleName: FR-INTRA-DOCUMENTEXPERT_BEHEERDER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504520242825562360,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: pmah arbeidsspecialist
+vdabroledescription: pmah arbeidsspecialist
+description: Automatically created from FGDS
+erRoleName: FR-PMAH-ARBEIDSSPECIALIST
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504532652139434820,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-ESF-REGISSEUR
+vdabroledescription: FR-ESF-REGISSEUR
+description: Automatically created from FGDS
+erRoleName: FR-ESF-REGISSEUR
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504543173931465734,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: LIP-beheerder
+vdabroledescription: LIP-beheerder
+description: Automatically created from FGDS
+erRoleName: FR-LIP-BEHEERDER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504555418971461227,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: GEBRUIKERSBEHEER_IBO
+vdabroledescription: IBO Administrator
+description: Automatically created from FGDS
+erRoleName: FR-GEBRUIKERSBEHEER_IBO
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504566693139399154,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: GEBRUIKERSBEHEER_RO
+vdabroledescription: Leesrechten in de gebruikersbeheertool
+description: Automatically created from FGDS
+erRoleName: FR-GEBRUIKERSBHEER_RO
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504578499589457264,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: OCMW-LWW
+vdabroledescription: OCMW-LWW
+description: Automatically created from FGDS
+erRoleName: FR-OCMW-LWW
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504590632966613668,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: ESF-Derde
+vdabroledescription: ESF-Derde
+description: Automatically created from FGDS
+erRoleName: FR-ESF-DERDE
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504605373310150381,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: CVSBegeleiding
+vdabroledescription: CVSBegeleiding
+description: Automatically created from FGDS
+erRoleName: FR-CVSBEGELEIDING
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504615806361055595,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: GEBRUIKERSBEHEER_ADM
+vdabroledescription: Administrator Gebruikersbeheer
+description: Automatically created from FGDS
+erRoleName: FR-GEBRUIKERSBEHEER_ADM
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504628901144708215,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: CVSBEGELEIDING-IBOINTERIM
+vdabroledescription: CVSBEGELEIDING-IBOINTERIM
+description: Automatically created from FGDS
+erRoleName: FR-CVSBEGELEIDING-IBOINTERIM
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504643366896602074,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: Correctorrol ORG21
+vdabroledescription: Correctorrol ORG21
+description: Automatically created from FGDS
+erRoleName: FR-ORG21-CORRECTOR
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504654990005833173,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: Expertrol ORG21
+vdabroledescription: Expertrol ORG21
+description: Automatically created from FGDS
+erRoleName: FR-ORG21-EXPERT
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504666254623952203,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: Peoplesoftrol ORG21
+vdabroledescription: Peoplesoftrol ORG21
+description: Automatically created from FGDS
+erRoleName: FR-ORG21-PEOPLESOFT
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504676799124780496,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: VKBOSYNC ORG21
+vdabroledescription: VKBOSYNC ORG21
+description: Automatically created from FGDS
+erRoleName: FR-ORG21-VKBOSYNC
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504688967278421982,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-ESF-LW-DERDE
+vdabroledescription: FR-ESF-LW-DERDE
+description: Automatically created from FGDS
+erRoleName: FR-ESF-LW-DERDE
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504724899338262401,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-LOOPBAANCOACH
+vdabroledescription: FR-LOOPBAANCOACH
+description: Automatically created from FGDS
+erRoleName: FR-LOOPBAANCOACH
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504757836169364419,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-CVS-OCMW-PRESTATIES-MEDEWERKER
+vdabroledescription: FR-CVS-OCMW-PRESTATIES-MEDEWERKER
+description: Automatically created from FGDS
+erRoleName: FR-CVS-OCMW-PRESTATIES-MEDEWERKER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504772447316327703,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-CONTROLE-CENTRALE-DIENST
+vdabroledescription: ControleDossier Centrale Dienst
+description: Automatically created from FGDS
+erRoleName: FR-CONTROLE-CENTRALE-DIENST
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504784947252233480,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-CONTROLE-CONSULENT
+vdabroledescription: ControleDossier Consulent
+description: Automatically created from FGDS
+erRoleName: FR-CONTROLE-CONSULENT
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504796925387558256,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-IKL-ZONDER-ZELFBEHEER
+vdabroledescription: FR-IKL-ZONDER-ZELFBEHEER
+description: Automatically created from FGDS
+erRoleName: FR-IKL-ZONDER-ZELFBEHEER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504808057065524627,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: MINIMAALTEST
+vdabroledescription: MINIMAALTEST
+description: Automatically created from FGDS
+erRoleName: FR-MINIMAALTEST
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504819322429353557,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-NOVELL-TEAM
+vdabroledescription: FR-NOVELL-TEAM
+description: Automatically created from FGDS
+erRoleName: FR-NOVELL-TEAM
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504832091321895420,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: Comeet Expert Consulent
+vdabroledescription: Comeet Expert Consulent
+description: Automatically created from FGDS
+erRoleName: FR-COMEET
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504843396326662634,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: LWW-Derde
+vdabroledescription: LWW-Derde
+description: Automatically created from FGDS
+erRoleName: FR-LWW-DERDE
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2504865670110740291,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-CONTROLE-TESTDOSSIER
+vdabroledescription: See testdossiers
+description: Automatically created from FGDS
+erRoleName: FR-CONTROLE-TESTDOSSIER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=3418599604113537056,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-WIJKWERK-PLANB
+vdabroledescription: Plan B
+description: Automatically created from FGDS
+erRoleName: FR-WIJKWERK-PLANB
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=6835044739223782713,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: BurgerLabels-Administrator
+vdabroledescription: Toegang tot BurgerLabels (IT)
+description: Automatically created from FGDS
+erRoleName: FR-BULAB-ADMIN
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=3514273089343525292,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: Wegewiz technisch support applicatie overkoepelend
+vdabroledescription: technische ondersteuning van Werkgeverswizard door derde lijn support/development team
+description: Automatically created from FGDS
+erRoleName: FR-WEGEWIZ-TECHNISCH-SUPPORT
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=8325834541371973505,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: AZI medewerker
+vdabroledescription: AZI medewerker
+description: Automatically created from FGDS
+erRoleName: FR-AZI-MEDEWERKER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=8325835271931328119,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-CVS-LWW-DERDE
+vdabroledescription: FR-CVS-LWW-DERDE
+description: Automatically created from FGDS
+erRoleName: FR-CVS-LWW-DERDE
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=8325836138419108789,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: FR-CVS-OCMW-MEDEWERKER
+vdabroledescription: FR-CVS-OCMW-MEDEWERKER
+description: Automatically created from FGDS
+erRoleName: FR-CVS-OCMW-MEDEWERKER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=8325836933412010266,ou=roles,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+objectClass: top
+objectClass: erRole
+objectClass: erManagedItem
+objectClass: erAccessItem
+vdabrolename: GA Medewerker
+vdabroledescription: GA Medewerker
+description: Automatically created from FGDS
+erRoleName: FR-GA-MEDEWERKER
+eraccessdescription: Automatically created from FGDS
+
+dn: erglobalid=2856391400501852469,ou=0,ou=people,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+vdabblacklisted: false
+vdabrrn: 1001
+erpersonstatus: 0
+givenname: TEST
+ercreatedate: 201906051236Z
+objectclass: top
+objectclass: vdabintern
+objectclass: erManagedItem
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: erPersonItem
+vdabgmail: false
+vdabafwezig: false
+uid: TEST_TRUSTCENTER
+mail: test.trustcenter@vdab.be
+cn: TEST TRUSTCENTER
+vdabchefoe: false
+erparent: erglobalid=3039736501573425690,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erglobalid: 2856391400501852469
+destinationindicator: intern-1001
+employeenumber: 13004547
+sn: TRUSTCENTER
+vdabguid: 5a8366c5-145f-4e14-a1bf-97fc95026363
+title: Mr
+vdabaliases: TEST_TRUSTCENTER@vdab.be
+vdabmail: test.trustcenter@vdab.be
+vdaboe: 1881
+
+dn: erglobalid=8382071954155097461,ou=0,ou=people,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+vdabrrn: 78021020778
+givenname: Anton
+ercreatedate: 202011230858Z
+objectclass: top
+objectclass: vdabderde
+objectclass: erManagedItem
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: erBPPersonItem
+cn: Anton Van Hoye
+erglobalid: 8382071954155097461
+sn: Van Hoye
+vdabguid: 9f1f6289-2c34-45b3-b27b-2a35b11a6c79
+title: Mr.
+uid: AVHOYE14
+vdabuid: AVHOYE14
+vdabsuspend: false
+destinationindicator: 1000666700378021020778
+l: OOSTENDE
+o: TESTBEDRIJF Sonila D3
+postalcode: 8400
+street: Lovestreet 007
+vdabikp: 10006667003
+vdaborgid: 10666306
+employeetype: Derde
+vdaboe: 10020876
+employeenumber: 116
+erparent: erglobalid=1400427702632520801,ou=orgChart,erglobalid=00000000000000000000,ou=vdab,o=vdab,c=be
+erpersonstatus: 0
+mail: abcd@vdab.be
+telephonenumber: +3225062144
+mobile: +355672623455
+vdabauthlevel: 5

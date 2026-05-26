@@ -1,0 +1,4 @@
+hazelcast:
+  properties:
+    hazelcast.logging.type: log4j2
+  instance-name: gebruikersbeheer-derden

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>be.vdab.gebruikersbeheer</groupId>
+		<artifactId>gebruikersbeheer-derden</artifactId>
+		<version>1.2-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>adapter-out-rest</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>gebruikersbeheer-derden-service</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>be.vdab.maven</groupId>
+				<artifactId>vdab-swaggerhub-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>download-codes-rest-internal</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>get</goal>
+						</goals>
+						<configuration>
+							<api>codes_rest_internal</api>
+							<version>1.0.2</version>
+							<outputFile>${project.build.directory}/codes_rest_internal.json</outputFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-codes-internal-rest-api</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generatorName>java</generatorName>
+							<inputSpec>${project.build.directory}/codes_rest_internal.json</inputSpec>
+							<output>${project.build.directory}/generated-sources</output>
+							<apiPackage>be.vdab.gebruikersbeheer.derden.adapter.out.rest.client.codes.api</apiPackage>
+							<modelPackage>be.vdab.gebruikersbeheer.derden.adapter.out.rest.client.codes.model
+							</modelPackage>
+							<generateModelTests>false</generateModelTests>
+							<generateApiTests>false</generateApiTests>
+							<!-- generate BaseApi etc: -->
+							<generateSupportingFiles>true</generateSupportingFiles>
+							<supportingFilesToGenerate>
+								ApiClient.java,BaseApi.java,JavaTimeFormatter.java,RFC3339DateFormat.java,ServerConfiguration.java,ServerVariable.java,Authentication.java,HttpBearerAuth.java
+							</supportingFilesToGenerate>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<!-- enable inheritance -->
+							<openapiNormalizer>REF_AS_PARENT_IN_ALLOF=true</openapiNormalizer>
+							<!-- don't put examples in the generated api stubs: -->
+							<skipOperationExample>true</skipOperationExample>
+							<configOptions>
+								<library>resttemplate</library>
+								<hideGenerationTimestamp>true</hideGenerationTimestamp>
+								<useBeanValidation>false</useBeanValidation>
+								<generateClientAsBean>true</generateClientAsBean>
+								<useJakartaEe>true</useJakartaEe>
+								<sourceFolder>codes</sourceFolder>
+								<generateBuilders>true</generateBuilders>
+								<documentationProvider>none</documentationProvider>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

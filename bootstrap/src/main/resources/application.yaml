@@ -1,0 +1,160 @@
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: prometheus,info,health,raakvlakken,refresh,metrics
+    access.default: read-only
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+    metrics:
+      access: read-only
+    prometheus:
+      access: read-only
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  health:
+    ldap:
+      enabled: false
+    livenessState.enabled: true
+    readinessState.enabled: true
+spring:
+  datasource:
+    url: ${datasource.connection.url}
+    username: ${datasource.connection.username}
+    password: ${datasource.connection.password}
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      connection-test-query: select 'validation' from dual
+      minimum-idle: ${datasource.connection.minimum-idle:1}
+      maximum-pool-size: ${datasource.connection.maximum-pool-size:20}
+      data-source-properties:
+        "[v$session.program]": ${spring.application.name}
+  config:
+    import: "optional:configserver:"
+  application:
+    name: gebruikersbeheer-derden
+  cloud:
+    discovery:
+      client:
+        composite-indicator:
+          enabled: false
+    vault.enabled: false
+  session:
+    store-type: hazelcast
+  jmx:
+    enabled: false
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+server:
+  port: 8080
+  servlet:
+    contextPath: /gebruikersbeheer-derden
+    session:
+      timeout: 900
+  max-http-request-header-size: 16384
+
+service:
+  identitytool.application-url: https://identitytool${service.appendix}
+  ui:
+    search-limit: 200
+
+oidc:
+  authorization-mode: oidc_or_vdabauthorization
+  endpoints:
+    roles:
+      enabled: true
+      extra-roles:
+        - Beheerders Derden
+        - Beheerders Derden zonder RRN
+        - CVS_rfi
+        - CVS_approval
+        - Beheerders Extranet
+        - Extranet Expert
+        - Kiosk Admin
+  legacy-load-isim-roles-enabled: true
+  issuers:
+    intern:
+      enabled: true
+      propagation:
+        strategy: use_client_credentials_when_authenticated
+    derde:
+      enabled: true
+      propagation:
+        strategy: ignore
+  role-mapping:
+    mappings:
+      - role: Beheerders Derden
+        grant-to-technical-users: intern
+        
+isim:
+  extern:
+    url: https://isim-${zuil}.${domain}/itim/ui/
+  url: https://isim10app00-${zuil}.${domain}:9082
+  tenant:
+    dn: ou=vdab,o=vdab,c=be
+  ldap:
+    port: ${isim.ldap.port}
+    sslport: ${isim.ldap.sslport}
+    useTLS: ${isim.ldap.useTLS}
+
+fgds:
+  ldap:
+    root: o=VDAB
+    port: 389
+    sslport: 636
+    useTLS: true
+
+TENANT_DN: ${isim.tenant.dn}
+DEFAULT_ADMINDOMAIN_DN: ou=orgChart,erglobalid=00000000000000000000,${isim.tenant.dn}
+DEFAULT_PEOPLE_DN: ou=0,ou=people,erglobalid=00000000000000000000,${isim.tenant.dn}
+DEFAULT_ROLE_DN: ou=roles,erglobalid=00000000000000000000,${isim.tenant.dn}
+DEFAULT_ACCOUNT_DN: ou=0,ou=accounts,erglobalid=00000000000000000000,${isim.tenant.dn}
+DEFAULT_SERVICES_DN: ou=services,erglobalid=00000000000000000000,${isim.tenant.dn}
+DEFAULT_SYSTEM_USERS_DN: ou=systemUser,ou=itim,${isim.tenant.dn}
+
+rfi_indicator: RI
+rfi_indicator_itim: CVSAccountData
+
+logging:
+  level:
+    be.vdab.iam.oidc.authorization.vdabauthorization.VdabauthorizationHeaderAuthenticationFilter: INFO
+    org:
+      springframework:
+        web: INFO
+    com: ERROR
+
+infoheader:
+  visible: 'true'
+logout:
+  consulent:
+    url: ${service.gebruikersbeheer-derden.extern.url}/logout
+  werkgevers:
+    url: ${service.werkgevers.extern.url}/logout
+tim:
+  administrators:
+    mincount: 1
+    maxcount: 2
+  vdab-extern:
+    header.uri: '/sites/default/files/headerfooter/wg-hd.htm'
+    footer.uri: '/sites/default/files/headerfooter/wg-ft.htm'
+timui:
+  dao:
+    maxrecords: 300
+  ui:
+    maxrecords:
+
+organization:
+  min.domain.admins: 1
+  max.domain.admins: 2
+
+roles:
+  to.assign.separately: CVS

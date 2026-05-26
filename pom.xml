@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>be.vdab.gebruikersbeheer</groupId>
+	<artifactId>gebruikersbeheer-derden</artifactId>
+	<version>1.2-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>be.vdab</groupId>
+		<artifactId>iam-parent</artifactId>
+		<version>1.17.256</version>
+	</parent>
+
+	<name>gebruikersbeheer-derden</name>
+	<description>gebruikersbeheer-derden</description>
+
+	<properties>
+		<vdab-raakvlakken.version>2.0.0-3</vdab-raakvlakken.version>
+
+		<java.version>21</java.version>
+		<sonar.exclusions>
+			**/*Config.java,
+			**/*Configuration.java,
+			**/CacheConfigOpenshift.java,
+			**/*Properties.java,
+			**/*.jsp
+		</sonar.exclusions>
+		<sonar.coverage.exclusions>
+			**/Application.java,
+			**/*StubImpl.java,
+			**/*Exception.java
+		</sonar.coverage.exclusions>
+		<sonar-maven-plugin.version>5.0.0.4389</sonar-maven-plugin.version>
+	</properties>
+
+	<modules>
+		<module>gebruikersbeheer-derden-service</module>
+		<module>core</module>
+		<module>adapter-in-rest-ui</module>
+		<module>adapter-out-rest</module>
+		<module>bootstrap</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>gebruikersbeheer-derden-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>adapter-in-rest-ui</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>adapter-out-rest</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>bootstrap</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>vdab-maven-public</name>
+			<url>https://artifacts.vdab.be/artifactory/swf-maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>vdab-maven-public</name>
+			<url>https://artifacts.vdab.be/artifactory/swf-maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+</project>

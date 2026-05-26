@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+    <springProfile name="local">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    </springProfile>
+
+    <contextName>gebruikersbeheer-derden</contextName>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+    <logger name="org.springframework" level="${SPRING_FRAMEWORK_LOGLEVEL:-INFO}"/>
+
+	<logger name="be.vdab.gebruikersbeheer.derden" level="DEBUG"/>
+
+    <logger name="be.vdab.logstash.access" level="INFO"/> <!-- logging done by AccessLogFilter and SpringAccessLogFilter -->
+    <logger name="be.vdab.logstash.db" level="INFO" /> <!-- logging done by LogDBInterceptor -->
+    <logger name="be.vdab.logstash.rest" level="INFO" /> <!-- logging done by LogRestTemplateInterceptor -->
+    <logger name="org.springframework.web" level="INFO" />
+
+    <root level="${ROOT_LOGLEVEL:-INFO}">
+	    <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

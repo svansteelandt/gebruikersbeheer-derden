@@ -1,0 +1,54 @@
+
+# false positive - local use only
+e7d037cf4d7dbce8147ebbcb2493376be11e0336:bootstrap/src/test/resources/local-setup/keycloak/isam-realm.json:vdab-suspicious-equals:1137
+# false positive - local use only
+e7d037cf4d7dbce8147ebbcb2493376be11e0336:bootstrap/src/test/resources/local-setup/keycloak/isam-realm.json:vdab-suspicious-equals:1215
+# false positive - local use only
+e7d037cf4d7dbce8147ebbcb2493376be11e0336:bootstrap/src/test/resources/local-setup/keycloak/isam-realm.json:vdab-suspicious-equals:1379
+# false positive - local use only
+39bab878caf4efc36aca92036157d9ca3ba08616:bootstrap/src/test/resources/application-test.yml:vdab-suspicious-equals-yaml:11
+# false positive - local use only
+39bab878caf4efc36aca92036157d9ca3ba08616:bootstrap/src/test/java/be/vdab/gebruikersbeheer/derden/bootstrap/containerdefinition/VdabOracleContainer.java:vdab-suspicious-equals:16
+# accepted risk - secret already rotated
+805a3475a9cd722c03b3c60362b50bd3014fedd7:bootstrap/src/test/resources/application-test.yml:vdab-suspicious-equals-yaml:11
+# accepted risk - secret already rotated
+805a3475a9cd722c03b3c60362b50bd3014fedd7:bootstrap/src/test/resources/application-test.yml:vdab-suspicious-equals-yaml:18
+# false positive - placeholder for secret
+805a3475a9cd722c03b3c60362b50bd3014fedd7:bootstrap/src/test/resources/application-test.yml:vdab-suspicious-equals-yaml:65
+# false positive - placeholder for secret
+35b614a3c9e7caaac6d505e753c83f40026dbe31:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-suspicious-equals-yaml:46
+# false positive - placeholder for secret
+569f5932586c340459594bc168255784f5608155:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-suspicious-equals-yaml:40
+# false positive - placeholder for secret
+805a3475a9cd722c03b3c60362b50bd3014fedd7:bootstrap/src/test/resources/application-test.yml:vdab-suspicious-equals-yaml:67
+# accepted risk - user no longer exists
+c388361c644f18641851b090c5353946755dfd17:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-common-password:3
+# accepted risk - user no longer exists
+c388361c644f18641851b090c5353946755dfd17:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-common-password:4
+# accepted risk - user no longer exists
+a2845972980968c5956c0e94e5b3565ec19331d4:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-common-password:3
+# accepted risk - password already rotated
+9b93752f2a7dd449665c40b8f60bba40f2d2bfbb:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-suspicious-equals-yaml:5
+
+# accepted risk - password already rotated
+379f9f5505609cb29d61b4ea962210ae6a3da198:gebruikersbeheer-derden-service/src/main/resources/application.yml:vdab-suspicious-equals-yaml:49
+# accepted risk - password already rotated
+d980ae80bd706a4c21311f5625e6d31cbd71d1de:gebruikersbeheer-derden-service/src/main/resources/application.yml:vdab-suspicious-equals-yaml:54
+# accepted risk - password already rotated
+a6d3f91cc83adff1b350d9bbe4543ce1649e2cd1:gebruikersbeheer-derden-service/src/main/resources/application.yml:vdab-suspicious-equals-yaml:54
+# accepted risk - password already rotated
+fefb701a1861530b4b4fd6c6fb5c5cfbc368230d:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-suspicious-equals-yaml:12
+# accepted risk - password already rotated
+65eaae0fa15a961a628ecdafd4808326a9d34b3b:gebruikersbeheer-derden-service/src/main/resources/application.yml:vdab-suspicious-equals-yaml:48
+# accepted risk - password already rotated
+7d778de90bac202e4448445fccb4defa50127c3e:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-suspicious-equals-yaml:17
+# accepted risk - password already rotated
+421f3d05db3eba2b0f03fa2c1f630463d7441edf:gebruikersbeheer-derden-service/src/main/resources/application-local.yml:vdab-suspicious-equals-yaml:6
+# false positive - local use only
+65eaae0fa15a961a628ecdafd4808326a9d34b3b:gebruikersbeheer-derden-service/src/main/java/be/vdab/gebruikersbeheer/derden/security/ItimContextHolder.java:generic-api-key:11
+# false positive - local use only
+0045ead50ea617cec3a6eae4422bdc5319069b0f:gebruikersbeheer-derden-service/src/main/java/be/vdab/gebruikersbeheer/derden/security/ItimContextHolder.java:generic-api-key:10
+# false positive - local use only
+99b4b35a7c2338a2266b69e40b91beb12f89bc73:bootstrap/src/test/java/be/vdab/gebruikersbeheer/derden/LocalApplication.java:vdab-suspicious-equals:17
+# false positive - local use only
+e43844616dc05c6b93e516f47c566dd6a91a70dc:bootstrap/src/test/java/be/vdab/gebruikersbeheer/derden/LocalApplication.java:vdab-suspicious-equals:17

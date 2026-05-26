@@ -1,0 +1,88 @@
+environment: "rel1ldv"
+zuil: "ldv"
+domain: "ops.vdab.be"
+cop.appendix: ".apps.cop-${zuil}.${domain}"
+spring:
+  cloud:
+    vault:
+      enabled: true
+      uri: "https://vault.ops.vdab.be:8200"
+      authentication: "TOKEN"
+      token: "${VAULT_TOKEN}"
+  datasource:
+    driverClassName: "oracle.jdbc.OracleDriver"
+    url: "jdbc:oracle:thin:@svc1ldvtim-db.ops.vdab.be:4013:SVC1LDVTIM"
+  config:
+    import:
+      - "vault://kv-ocp-ldv/ldv-gebruikersbeheer-derden/app/gebruikersbeheer-derden?prefix=vault.app.gebruikersbeheer-derden."
+      - "vault://kv-ocp-ldv/ldv-gebruikersbeheer-derden/ops/database/gebruikersbeheer-derden/pool-user-tim?prefix=vault.ops.database.gebruikersbeheer-derden.pool-user-tim."
+      - "vault://kv-ocp-ldv/ldv-gebruikersbeheer-derden/ops/fgds/ldap?prefix=vault.ops.fgds.ldap."
+      - "vault://kv-ocp-ldv/ldv-gebruikersbeheer-derden/ops/isim/ldap?prefix=vault.ops.isim.ldap."
+      - "vault://kv-ocp-ldv/ldv-gebruikersbeheer-derden/ops/isim?prefix=vault.ops.isim."
+isim:
+  ldap:
+    host: "isim10ldap-ldv.ops.vdab.be"
+    port: 389
+    sslport: 636
+    useTLS: false
+    user: "${vault.ops.isim.ldap.user}"
+    password: "${vault.ops.isim.ldap.password}"
+  user: "${vault.ops.isim.user}"
+  password: "${vault.ops.isim.password}"
+fgds:
+  ldap:
+    host:
+      write: "svc1ldsldvwrite00.ops.vdab.be"
+    user: "${vault.ops.fgds.ldap.user}"
+    password: "${vault.ops.fgds.ldap.password}"
+service:
+  appendix: "-${environment}.${domain}"
+  businessservice.url: "http://dlbusinessservice-${environment}.${domain}:80/businessservice"
+  codes.url: "https://codes${cop.appendix}/codes"
+  gebruikersbeheer-derden.extern.url: "https://consulent-${environment}.${domain}"
+  orgeenheid.url: "https://organisatie-legacy${cop.appendix}/orgeenheid"
+  online.url: "http://dlwww-${environment}.${domain}:80"
+  passwordchange.url: "https://passwordchange${cop.appendix}/password"
+  werkgevers.extern.url: "https://werkgevers-${environment}.${domain}"
+  jwks.url: "https://fed-runtime-${zuil}.${domain}/sps/jwks"
+  website.url: "https://www-${environment}.${domain}"
+  auth4u.url: "http://auth4u00-${environment}.${domain}:8080/auth4u"
+  gebruikerservice.url: "https://gebruikerservice${cop.appendix}/gebruikerservice"
+  artemisamq:
+    protocol: "tcp"
+    host: "amq-mainqueues-m${service.appendix}"
+    port: 9876
+    port.tcp: 61616
+    master: "tcp://amq-mainqueues01${service.appendix}:${service.artemisamq.port.tcp}"
+    slave: "tcp://amq-mainqueues02${service.appendix}:${service.artemisamq.port.tcp}"
+    url: "${service.artemisamq.protocol}://${service.artemisamq.host}:${service.artemisamq.port}"
+    url.tcp: "(${service.artemisamq.master},${service.artemisamq.slave})"
+    user: "user"
+    password: "<dummy>"
+  identitytool:
+    contextroot: "identitytool"
+    host: "identitytool00${service.appendix}"
+artemis-config:
+  default:
+    enabled: false
+  producer:
+    enabled: false
+  consumer:
+    enabled: false
+  topic:
+    enabled: false
+  queue:
+    enabled: false
+encryptor:
+  shared:
+    secret: "${vault.app.gebruikersbeheer-derden.encryptorSharedSecret}"
+datasource:
+  connection:
+    username: "${vault.ops.database.gebruikersbeheer-derden.pool-user-tim.username}"
+    password: "${vault.ops.database.gebruikersbeheer-derden.pool-user-tim.password}"
+
+oidc:
+  issuers:
+    intern:
+      propagation:
+        strategy: ignore

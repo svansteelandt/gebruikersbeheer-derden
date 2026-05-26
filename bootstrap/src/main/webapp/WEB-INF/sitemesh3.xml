@@ -1,0 +1,4 @@
+<sitemesh>
+	<mapping path="/*" decorator="layout.jsp"/>
+	<mapping path="/extern/*" decorator="template-extern.jsp"/>
+</sitemesh>
